@@ -60,7 +60,7 @@ CREATE (person1:Person {
        		LastName: "Smith", 
        		UniqueId: "0111111",
        		DOB: "1/1/1950",
-       		Gender: M,
+       		Gender: "M",
        		Ethnicity: "Caucasian"})
 CREATE (person2:Person { 
        		FirstName: "Beverly", 
