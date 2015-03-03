@@ -1,1 +1,226 @@
 
+= Patient Information
+:neo4j-version: 2.0.0-RC1
+:author: Scott LePage
+:tags: domain:healthcare, use-case:patient information
+
+
+'''
+
+*Table of Contents*
+
+* *Introduction*
+** <<introduction_to_problem, Introduction to Problem>>
+* *Scenario*
+** <<explanation of scenario, Explanation of Scenario>>
+** <<typical_scenario, Typical Scenario>>
+* *Solution*
+** <<explanation_of_solution, Explanation of Solution>>
+** <<how_graph_databases_can_help, How Graph Databases Can Help>>
+* *Data Model*
+** <<bank_fraud_data_model, Bank Fraud Graph Data Model>>
+* *Database Setup*
+** <<sample_data_set, Sample Data Set>>
+
+
+'''
+
+== Introduction to Problem
+
+
+'''
+
+== Explanation of Scenario
+
+
+=== Typical Scenario
+
+
+'''
+
+== Explanation of Solution
+
+
+
+'''
+
+== Patient Information Graph Data Model
+
+
+'''
+
+== Sample Data Set
+
+//setup
+[source,cypher]
+----
+
+// Create account holders
+CREATE (person1:Person { 
+       		FirstName: "John", 
+       		LastName: "Smith", 
+       		UniqueId: "0111111",
+       		DOB: "1/1/1950",
+       		Gender: "M",
+       		Ethnicity: "Caucasian"})
+CREATE (person2:Person { 
+       		FirstName: "Beverly", 
+       		LastName: "Smith"}) 
+
+CREATE (person3:Person { 
+		FirstName: "Vera", 
+		LastName: "Wang",
+		UniqueId: "0222222",
+       		DOB: "2/2/1970",
+       		Gender: "F",
+       		Ethnicity: "Chinese"}) 
+		
+CREATE (person4:Person { 
+       		FirstName: "Tony", 
+       		LastName: "Wang" 
+       		}) 
+
+CREATE (person5:Person { 
+			FirstName: "Michael", 
+			LastName: "Davies", 
+			UniqueId: "910001" }) 
+CREATE (person6:Person { 
+			FirstName: "Stacy", 
+			LastName: "Mulder", 
+			UniqueId: "910002" }) 
+			
+
+// Create Address
+//CREATE (address1:Address { 
+//			Street: "123 NW 1st Street", 
+//			City: "San Francisco", 
+//			State: "California", 
+//			ZipCode: "94101" })
+
+// Connect spouses
+CREATE (person1)-[:SPOUSE_OF]->(person2), 
+       (person2)-[:SPOUSE_OF]->(person1),
+       (person3)-[:SPOUSE_OF]->(person4),
+       (person4)-[:SPOUSE_OF]->(person3)
+
+
+// Create Phone Number
+//CREATE (phoneNumber1:PhoneNumber { PhoneNumber: "555-555-5555" })
+
+// Connect 2 account holders to 1 phone number
+//CREATE (accountHolder1)-[:HAS_PHONENUMBER]->(phoneNumber1), 
+//       (accountHolder2)-[:HAS_PHONENUMBER]->(phoneNumber1)
+
+// Create SSN
+//CREATE (ssn1:SSN { SSN: "241-23-1234" })
+
+// Connect 2 account holders to 1 SSN
+//CREATE (accountHolder2)-[:HAS_SSN]->(ssn1), 
+//       (accountHolder3)-[:HAS_SSN]->(ssn1)
+
+// Create SSN and connect 1 account holder
+//CREATE (ssn2:SSN { SSN: "241-23-4567" })<-[:HAS_SSN]-(accountHolder1)
+
+// Create Credit Card and connect 1 account holder
+//CREATE (creditCard1:CreditCard { 
+//			AccountNumber: "1234567890123456", 
+//			Limit: 5000, Balance: 1442.23, 
+//			ExpirationDate: "01-20", 
+//			SecurityCode: "123" })<-[:HAS_CREDITCARD]-(accountHolder1)
+
+// Create Bank Account and connect 1 account holder
+//CREATE (bankAccount1:BankAccount { 
+//			AccountNumber: "2345678901234567", 
+//			Balance: 7054.43 })<-[:HAS_BANKACCOUNT]-(accountHolder1)
+
+// Create Credit Card and connect 1 account holder
+//CREATE (creditCard2:CreditCard { 
+//			AccountNumber: "1234567890123456", 
+//			Limit: 4000, Balance: 2345.56, 
+//			ExpirationDate: "02-20", 
+//			SecurityCode: "456" })<-[:HAS_CREDITCARD]-(accountHolder2)
+
+// Create Bank Account and connect 1 account holder
+//CREATE (bankAccount2:BankAccount { 
+//			AccountNumber: "3456789012345678", 
+//			Balance: 4231.12 })<-[:HAS_BANKACCOUNT]-(accountHolder2)
+
+// Create Unsecured Loan and connect 1 account holder
+//CREATE (unsecuredLoan2:UnsecuredLoan { 
+//			AccountNumber: "4567890123456789-0", 
+//			Balance: 9045.53, 
+//			APR: .0541, 
+//			LoanAmount: 12000.00 })<-[:HAS_UNSECUREDLOAN]-(accountHolder2)
+
+// Create Bank Account and connect 1 account holder
+//CREATE (bankAccount3:BankAccount { 
+//			AccountNumber: "4567890123456789", 
+//			Balance: 12345.45 })<-[:HAS_BANKACCOUNT]-(accountHolder3)
+
+// Create Unsecured Loan and connect 1 account holder
+//CREATE (unsecuredLoan3:UnsecuredLoan { 
+//			AccountNumber: "5678901234567890-0", 
+//			Balance: 16341.95, APR: .0341, 
+//			LoanAmount: 22000.00 })<-[:HAS_UNSECUREDLOAN]-(accountHolder3)
+
+// Create Phone Number and connect 1 account holder
+//CREATE (phoneNumber2:PhoneNumber { 
+//			PhoneNumber: "555-555-1234" })<-[:HAS_PHONENUMBER]-(accountHolder3)
+
+RETURN *
+----
+
+//graph
+
+'''
+
+== Entity Link Analysis
+
+Performing entity link analysis on the above data model is demonstrated below.
+
+==== Find account holders who share more than one piece of legitimate contact information
+
+[source,cypher]
+----
+MATCH 		(accountHolder:AccountHolder)-[]->(contactInformation) 
+WITH 		contactInformation, 
+			count(accountHolder) AS RingSize 
+MATCH 		(contactInformation)<-[]-(accountHolder) 
+WITH 		collect(accountHolder.UniqueId) AS AccountHolders, 
+			contactInformation, RingSize
+WHERE 		RingSize > 1 
+RETURN 		AccountHolders AS FraudRing, 
+			labels(contactInformation) AS ContactType, 
+			RingSize
+ORDER BY 	RingSize DESC
+----
+
+//output
+//table
+
+==== Determine the financial risk of a possible fraud ring
+
+[source,cypher]
+----
+MATCH 		(accountHolder:AccountHolder)-[]->(contactInformation) 
+WITH 		contactInformation, 
+			count(accountHolder) AS RingSize 
+MATCH 		(contactInformation)<-[]-(accountHolder), 
+			(accountHolder)-[r:HAS_CREDITCARD|HAS_UNSECUREDLOAN]->(unsecuredAccount)
+WITH 		collect(DISTINCT accountHolder.UniqueId) AS AccountHolders, 
+			contactInformation, RingSize,
+			SUM(CASE type(r)
+				WHEN 'HAS_CREDITCARD' THEN unsecuredAccount.Limit
+				WHEN 'HAS_UNSECUREDLOAN' THEN unsecuredAccount.Balance
+				ELSE 0
+			END) as FinancialRisk
+WHERE 		RingSize > 1
+RETURN 		AccountHolders AS FraudRing, 
+			labels(contactInformation) AS ContactType, 
+			RingSize, 
+			round(FinancialRisk) as FinancialRisk
+ORDER BY 	FinancialRisk DESC
+----
+
+//output
+//table
