@@ -90,10 +90,9 @@ CREATE (person6:Person {
 //			State: "California", 
 //			ZipCode: "94101" })
 
-// Connect 3 account holders to 1 address
-//CREATE (accountHolder1)-[:HAS_ADDRESS]->(address1), 
-//       (accountHolder2)-[:HAS_ADDRESS]->(address1), 
-//       (accountHolder3)-[:HAS_ADDRESS]->(address1)
+// Connect spouses
+CREATE (person1)<-[:SPOUSE_OF]->(person2), 
+       (person3)<-[:SPOUSE_OF]->(person4)
 
 // Create Phone Number
 //CREATE (phoneNumber1:PhoneNumber { PhoneNumber: "555-555-5555" })
