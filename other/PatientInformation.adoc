@@ -71,11 +71,10 @@ CREATE (physician2:Physician {
 			Title: "M.D., M.S.C.I." })
 
 // Create Address
-//CREATE (address1:Address { 
-//			Street: "123 NW 1st Street", 
-//			City: "San Francisco", 
-//			State: "California", 
-//			ZipCode: "94101" })
+CREATE (address1:Address { 
+			Street: "1301 S. Braeswood Blvd.", 
+			City: "Houston", 
+			State: "Tx" })
 
 // Connect spouses
 CREATE (person1)-[:SPOUSE_OF]->(person2)-[:SPOUSE_OF]->(person1), 
@@ -86,7 +85,8 @@ CREATE (phoneNumber1:PhoneNumber { PhoneNumber: "512-123-5678" })
 CREATE (phoneNumber2:PhoneNumber { PhoneNumber: "832-123-5677" })
 
 CREATE 	(person2)-[:HAS_PHONENUMBER]->(phoneNumber1), 
-       	(person4)-[:HAS_PHONENUMBER]->(phoneNumber2)
+       	(person4)-[:HAS_PHONENUMBER]->(phoneNumber2),
+       	(patient1)-[:HAS_ADDRESS]->(address1)
        
 CREATE 	(person1)-[:IS_A]->(patient1),
 	(person3)-[:IS_A]->(patient2),
