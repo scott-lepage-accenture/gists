@@ -89,7 +89,7 @@ CREATE 	(person2)-[:HAS_PHONENUMBER]->(phoneNumber1),
        	(person4)-[:HAS_PHONENUMBER]->(phoneNumber2)
        
 CREATE 	(person1)-[:IS_A]->(patient1),
-	(person2)-[:IS_A->(patient2)
+	(person2)-[:IS_A]->(patient2)
 
 CREATE 	(person5)-[:IS_A]->(physician1),
 	(person6)-[:IS_A]->(physician2)
