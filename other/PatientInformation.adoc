@@ -8,14 +8,9 @@
 '''
 
 *Table of Contents*
-* *Data Model*
-** <<patient_information_data_model, Patient Information Graph Data Model>>
+
 * *Database Setup*
 ** <<sample_data_set, Sample Data Set>>
-
-
-== Patient Information Graph Data Model
-
 
 '''
 
