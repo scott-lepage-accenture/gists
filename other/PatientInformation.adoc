@@ -76,11 +76,11 @@ CREATE (address1:Address {
 			City: "Houston", 
 			State: "Tx" })
 			
-CREATE 	(diagnosis1:Diagnosis { 
+CREATE (diagnosis1:Diagnosis { 
 			Name: "Melanoma", 
 			Stage: "2"}),
 			
-CREATE 	(diagnosis2:Diagnosis { 
+CREATE (diagnosis2:Diagnosis { 
 			Name: "Breast Cancer", 
 			Stage: "1"})
 
@@ -105,7 +105,7 @@ CREATE 	(patient1)-[:IS_A_PATIENT_OF]->(physician1)-[:CAREGIVER_FOR]->(patient1)
 	(patient2)-[:IS_A_PATIENT_OF]->(physician2)-[:CAREGIVER_FOR]->(patient2)
 	
 CREATE 	(patient1)-[:DIAGNOSIS_OF]->(diagnosis1),
-	(patient2)-[:DIAGNOSIS_OF]->(diagnosis2),
+	(patient2)-[:DIAGNOSIS_OF]->(diagnosis2)
 
 RETURN *
 ----
