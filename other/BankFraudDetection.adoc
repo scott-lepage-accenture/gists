@@ -64,13 +64,14 @@ CREATE (person2:Person {
        		LastName: "Smith" }) 
 
 CREATE (person3:Person { 
-		FirstName: "Tony", 
-		LastName: "Wang" }) 
+		FirstName: "Vera", 
+		LastName: "Wang",
+		UniqueId: "0222222" }) 
 		
 CREATE (person4:Person { 
-       		FirstName: "John", 
-       		LastName: "Smith", 
-       		UniqueId: "0111111" }) 
+       		FirstName: "Tony", 
+       		LastName: "Wang" 
+       		}) 
 
 CREATE (person5:Person { 
 			FirstName: "Michael", 
