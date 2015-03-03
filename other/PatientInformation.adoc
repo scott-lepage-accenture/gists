@@ -54,21 +54,20 @@ CREATE (person6:Person {
 			UniqueId: "910002" })
 
 CREATE (patient1:Patient {
-       			UniqueId: "0111111"})
+       			UniqueId: "0111111" })
 CREATE (patient2:Patient {
-       			UniqueId: "0222222"})
+       			UniqueId: "0222222" })
 			
 CREATE (physician1:Physician { 
+			UniqueId: "910001",
 			Title: "M.D., Ph.D.",
 			Rank: "Associate Professor"
 			})
 CREATE (physician2:Physician { 
 			UniqueId: "910002",
-			Title: "M.D., M.S.C.I."
+			Title: "M.D., M.S.C.I.",
 			Rank: "Associate Professor"
 			})
-CREATE (title1:Title {
-			Name: "910002")
 
 // Create Address
 //CREATE (address1:Address { 
