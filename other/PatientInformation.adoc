@@ -75,6 +75,13 @@ CREATE (address1:Address {
 			Street: "1301 S. Braeswood Blvd.", 
 			City: "Houston", 
 			State: "Tx" })
+			
+CREATE 	(diagnosis1:Diagnosis { 
+			Name: "Melanoma", 
+			Stage: "2"}),
+CREATE 	(diagnosis2:Diagnosis { 
+			Name: "Breast Cancer", 
+			Stage: "1"})
 
 // Connect spouses
 CREATE (person1)-[:SPOUSE_OF]->(person2)-[:SPOUSE_OF]->(person1), 
@@ -95,6 +102,9 @@ CREATE 	(person1)-[:IS_A]->(patient1),
 	
 CREATE 	(patient1)-[:IS_A_PATIENT_OF]->(physician1)-[:CAREGIVER_FOR]->(patient1),
 	(patient2)-[:IS_A_PATIENT_OF]->(physician2)-[:CAREGIVER_FOR]->(patient2)
+	
+CREATE 	(patient1)-[:DIAGNOSIS_OF]->(diagnosis1),
+	(patient2)-[:DIAGNOSIS_OF]->(diagnosis2),
 
 RETURN *
 ----
