@@ -133,8 +133,8 @@ RETURN 		patient
 
 [source,cypher]
 ----
-MATCH (n)
-RETURN n
+MATCH (d:Diagnosis {Name:'Melanoma')--(pat:Patient)
+RETURN pat
 ----
 
 //output
