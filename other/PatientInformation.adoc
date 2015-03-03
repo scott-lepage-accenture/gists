@@ -63,12 +63,12 @@ CREATE (patient2:Patient {
 CREATE (physician1:Physician { 
 			UniqueId: "910001",
 			Rank: "Associate Professor",
-			Title: "M.D., Ph.D.",})
+			Title: "M.D., Ph.D." })
 			
 CREATE (physician2:Physician { 
 			UniqueId: "910002",
 			Rank: "Associate Professor",
-			Title: "M.D., M.S.C.I."})
+			Title: "M.D., M.S.C.I." })
 
 // Create Address
 //CREATE (address1:Address { 
