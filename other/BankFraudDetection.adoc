@@ -58,15 +58,21 @@
 CREATE (person1:Person { 
        		FirstName: "John", 
        		LastName: "Smith", 
-       		UniqueId: "0111111" })
+       		UniqueId: "0111111",
+       		DOB: "1/1/1950",
+       		Gender: M,
+       		Ethnicity: "Caucasian"})
 CREATE (person2:Person { 
        		FirstName: "Beverly", 
-       		LastName: "Smith" }) 
+       		LastName: "Smith"}) 
 
 CREATE (person3:Person { 
 		FirstName: "Vera", 
 		LastName: "Wang",
-		UniqueId: "0222222" }) 
+		UniqueId: "0222222",
+       		DOB: "2/2/1970",
+       		Gender: "F",
+       		Ethnicity: "Chinese"}) 
 		
 CREATE (person4:Person { 
        		FirstName: "Tony", 
@@ -95,6 +101,7 @@ CREATE (person1)-[:SPOUSE_OF]->(person2),
        (person2)-[:SPOUSE_OF]->(person1),
        (person3)-[:SPOUSE_OF]->(person4),
        (person4)-[:SPOUSE_OF]->(person3)
+
 
 // Create Phone Number
 //CREATE (phoneNumber1:PhoneNumber { PhoneNumber: "555-555-5555" })
