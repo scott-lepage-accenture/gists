@@ -78,7 +78,7 @@ CREATE (address1:Address {
 			
 CREATE (diagnosis1:Diagnosis { 
 			Name: "Melanoma", 
-			Stage: "2"}),
+			Stage: "2"})
 			
 CREATE (diagnosis2:Diagnosis { 
 			Name: "Breast Cancer", 
