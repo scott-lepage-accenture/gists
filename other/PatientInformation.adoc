@@ -30,7 +30,8 @@ CREATE (person1:Person {
        		
 CREATE (person2:Person { 
        		FirstName: "Beverly", 
-       		LastName: "Smith"}) 
+       		LastName: "Smith",
+       		Gender: "F"}) 
 
 CREATE (person3:Person { 
 		FirstName: "Vera", 
@@ -41,18 +42,19 @@ CREATE (person3:Person {
 		
 CREATE (person4:Person { 
        		FirstName: "Tony", 
-       		LastName: "Wang" 
+       		LastName: "Wang",
+       		Gender: "M"
        		}) 
        		
 CREATE (person5:Person { 
 			FirstName: "Michael", 
 			LastName: "Davies", 
-			UniqueId: "910001" }) 
+			Gender: "M" }) 
 			
 CREATE (person6:Person { 
 			FirstName: "Stacy", 
-			LastName: "Mulder", 
-			UniqueId: "910002" })
+			LastName: "Mulder",
+			Gender: "F"})
 
 CREATE (patient1:Patient {
        			UniqueId: "0111111" })
