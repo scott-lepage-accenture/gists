@@ -92,6 +92,9 @@ CREATE 	(person1)-[:IS_A]->(patient1),
 	(person3)-[:IS_A]->(patient2),
 	(person5)-[:IS_A]->(physician1),
 	(person6)-[:IS_A]->(physician2)
+	
+CREATE 	(patient1)-[:IS_A_PATIENT_OF]->(physician1)-[:CAREGIVER_FOR]->(patient1),
+	(patient2)-[:IS_A_PATIENT_OF]->(physician2)-[:CAREGIVER_FOR]->(patient2)
 
 RETURN *
 ----
