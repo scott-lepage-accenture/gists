@@ -124,6 +124,7 @@ Performing entity link analysis on the above data model is demonstrated below.
 ----
 MATCH 		(patient:Patient)-[:DIAGNOSIS_OF]->(diagnosis:Diagnosis) 
 WHERE		diagnosis = "Melanoma"
+RETURN 		patient
 
 ----
 
