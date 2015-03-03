@@ -137,6 +137,7 @@ MATCH (d:Diagnosis {Name:'Melanoma'})--(pat:Patient)
 RETURN pat
 ----
 
+
 //output
 //table
 
