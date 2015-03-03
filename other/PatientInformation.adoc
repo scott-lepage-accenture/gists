@@ -64,11 +64,8 @@ CREATE (person6:Person {
 //			ZipCode: "94101" })
 
 // Connect spouses
-CREATE (person1)-[:SPOUSE_OF]->(person2), 
-       (person2)-[:SPOUSE_OF]->(person1),
-       (person3)-[:SPOUSE_OF]->(person4),
-       (person4)-[:SPOUSE_OF]->(person3)
-
+CREATE (person1)-[:SPOUSE_OF]->(person2)-[:SPOUSE_OF]->(person1), 
+       (person3)-[:SPOUSE_OF]->(person4)-[:SPOUSE_OF]->(person3)
 
 // Create Phone Number
 CREATE (phoneNumber1:PhoneNumber { PhoneNumber: "512-123-5678" })
