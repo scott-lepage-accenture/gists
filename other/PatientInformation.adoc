@@ -8,41 +8,11 @@
 '''
 
 *Table of Contents*
-
-* *Introduction*
-** <<introduction_to_problem, Introduction to Problem>>
-* *Scenario*
-** <<explanation of scenario, Explanation of Scenario>>
-** <<typical_scenario, Typical Scenario>>
-* *Solution*
-** <<explanation_of_solution, Explanation of Solution>>
-** <<how_graph_databases_can_help, How Graph Databases Can Help>>
 * *Data Model*
-** <<bank_fraud_data_model, Bank Fraud Graph Data Model>>
+** <<patient_information_data_model, Patient Information Graph Data Model>>
 * *Database Setup*
 ** <<sample_data_set, Sample Data Set>>
 
-
-'''
-
-== Introduction to Problem
-
-
-'''
-
-== Explanation of Scenario
-
-
-=== Typical Scenario
-
-
-'''
-
-== Explanation of Solution
-
-
-
-'''
 
 == Patient Information Graph Data Model
 
