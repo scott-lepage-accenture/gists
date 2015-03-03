@@ -58,18 +58,25 @@
 CREATE (person1:Person { 
        		FirstName: "John", 
        		LastName: "Smith", 
-       		UniqueId: "0111111" }) 
-
+       		UniqueId: "0111111" })
 CREATE (person2:Person { 
-			FirstName: "Vera", 
-			LastName: "Wang", 
-			UniqueId: "0222222" }) 
+       		FirstName: "Beverly", 
+       		LastName: "Smith" }) 
 
 CREATE (person3:Person { 
+		FirstName: "Tony", 
+		LastName: "Wang" }) 
+		
+CREATE (person4:Person { 
+       		FirstName: "John", 
+       		LastName: "Smith", 
+       		UniqueId: "0111111" }) 
+
+CREATE (person5:Person { 
 			FirstName: "Michael", 
 			LastName: "Davies", 
 			UniqueId: "910001" }) 
-CREATE (person4:Person { 
+CREATE (person6:Person { 
 			FirstName: "Stacy", 
 			LastName: "Mulder", 
 			UniqueId: "910002" }) 
