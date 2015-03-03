@@ -118,19 +118,25 @@ RETURN *
 
 Performing entity link analysis on the above data model is demonstrated below.
 
-==== Find patients with melonoma
+==== Find all patients
 
 [source,cypher]
 ----
 MATCH 		(patient:Patient) 
 RETURN 		patient
-
 ----
 
 //output
 //table
 
+==== Find all patients with Melanoma
 
+[source,cypher]
+----
+MATCH 		(diagnosis:Diagnosis( {name: 'Melanoma'}) <-[:DIAGNOSIS_OF]- (patient:Patient) 
+RETURN 		patient
+----
 
 //output
 //table
+
