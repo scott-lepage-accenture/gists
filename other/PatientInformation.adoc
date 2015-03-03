@@ -83,7 +83,7 @@ CREATE (diagnosis1:Diagnosis {
 CREATE (diagnosis2:Diagnosis { 
 			Name: "Breast Cancer", 
 			Stage: "1"})
-
+			
 // Connect spouses
 CREATE (person1)-[:SPOUSE_OF]->(person2)-[:SPOUSE_OF]->(person1), 
        (person3)-[:SPOUSE_OF]->(person4)-[:SPOUSE_OF]->(person3)
