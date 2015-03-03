@@ -20,11 +20,10 @@
 [source,cypher]
 ----
 
-// Create account holders
+// Create persons
 CREATE (person1:Person { 
        		FirstName: "John", 
        		LastName: "Smith", 
-       		UniqueId: "0111111",
        		DOB: "1/1/1950",
        		Gender: "M",
        		Ethnicity: "Caucasian"})
@@ -36,7 +35,6 @@ CREATE (person2:Person {
 CREATE (person3:Person { 
 		FirstName: "Vera", 
 		LastName: "Wang",
-		UniqueId: "0222222",
        		DOB: "2/2/1970",
        		Gender: "F",
        		Ethnicity: "Chinese"}) 
@@ -45,7 +43,7 @@ CREATE (person4:Person {
        		FirstName: "Tony", 
        		LastName: "Wang" 
        		}) 
-
+       		
 CREATE (person5:Person { 
 			FirstName: "Michael", 
 			LastName: "Davies", 
@@ -53,8 +51,24 @@ CREATE (person5:Person {
 CREATE (person6:Person { 
 			FirstName: "Stacy", 
 			LastName: "Mulder", 
-			UniqueId: "910002" }) 
+			UniqueId: "910002" })
+
+CREATE (patient1:Patient {
+       			UniqueId: "0111111"})
+CREATE (patient2:Patient {
+       			UniqueId: "0222222"})
 			
+CREATE (physician1:Physician { 
+			Title: "M.D., Ph.D.",
+			Rank: "Associate Professor"
+			})
+CREATE (physician2:Physician { 
+			UniqueId: "910002",
+			Title: "M.D., M.S.C.I."
+			Rank: "Associate Professor"
+			})
+CREATE (title1:Title {
+			Name: "910002")
 
 // Create Address
 //CREATE (address1:Address { 
@@ -71,8 +85,14 @@ CREATE (person1)-[:SPOUSE_OF]->(person2)-[:SPOUSE_OF]->(person1),
 CREATE (phoneNumber1:PhoneNumber { PhoneNumber: "512-123-5678" })
 CREATE (phoneNumber2:PhoneNumber { PhoneNumber: "832-123-5677" })
 
-CREATE (person2)-[:HAS_PHONENUMBER]->(phoneNumber1), 
-       (person4)-[:HAS_PHONENUMBER]->(phoneNumber2)
+CREATE 	(person2)-[:HAS_PHONENUMBER]->(phoneNumber1), 
+       	(person4)-[:HAS_PHONENUMBER]->(phoneNumber2)
+       
+CREATE 	(person1)-[:IS_A]->(patient1),
+	(person2)-[:IS_A->(patient2)
+
+CREATE 	(person5)-[:IS_A]->(physician1),
+	(person6)-[:IS_A]->(physician2)
 
 RETURN *
 ----
